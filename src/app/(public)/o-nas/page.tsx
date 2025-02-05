@@ -1,8 +1,10 @@
-import AboutView from "@/views/public/AboutView";
+//src\app\(public)\o-nás\page.tsx
+import AboutView from "../../../sections/AboutView";
+import Typography from "@mui/material/Typography";
+import Container  from "@mui/material/Container";
 
-export const metadata = { title: "O nás | ZoškaSnap" };
+export const metadata = {title:"O nás| Petrik"};
 
-// About Us Page Component
-const AboutPage = () => <AboutView />;
-
-export default AboutPage;
+export default function About() {
+  return <AboutView/>
+}

@@ -33,7 +33,7 @@ export default function SignInView() {
           Prihlásiť sa
         </Typography>
 
-        {/* Google Sign In Button */}
+        {/* Google Sign In Button (Pink) */}
         <Button
           variant="outlined"
           fullWidth
@@ -42,18 +42,18 @@ export default function SignInView() {
           sx={{
             mb: 2,
             borderRadius: 2, // Custom border-radius for Google button
-            color: "primary.main", // Color from the theme (primary color)
-            borderColor: "primary.main", // Set border color to primary color
+            color: "#D5006D", // Pink color for Google button
+            borderColor: "#D5006D", // Pink border color
             '&:hover': {
-              backgroundColor: "primary.main", // Background color on hover
-              color: "#fff", // Text color on hover
+              backgroundColor: "#D5006D", // Pink background color on hover
+              color: "#fff", // White text color on hover
             },
           }}
         >
           Prihlásiť sa účtom Google
         </Button>
 
-        {/* GitHub Sign In Button */}
+        {/* GitHub Sign In Button (Light Green) */}
         <Button
           variant="outlined"
           fullWidth
@@ -62,11 +62,11 @@ export default function SignInView() {
           sx={{
             mb: 3,
             borderRadius: 2, // Custom border-radius for GitHub button
-            color: "secondary.main", // Color from the theme (secondary color)
-            borderColor: "secondary.main", // Set border color to secondary color
+            color: "#4CAF50", // Light green color for GitHub button
+            borderColor: "#4CAF50", // Green border color
             '&:hover': {
-              backgroundColor: "secondary.main", // Background color on hover
-              color: "#fff", // Text color on hover
+              backgroundColor: "#4CAF50", // Green background color on hover
+              color: "#fff", // White text color on hover
             },
           }}
         >
