@@ -37,7 +37,7 @@ interface PostData {
 }
 
 interface Post {
-  id: number; // Changed to number for consistency
+  id: number;
   title: string;
   content: string;
   imageUrl: string;
@@ -59,16 +59,15 @@ const PostView = () => {
 
         // Map the fetched data to match the Post interface
         const postsData: Post[] = data.map((post: PostData) => {
-          // Ensure the id is a valid number or use a fallback key
           const postId = parseInt(post.id);
-          const validId = !isNaN(postId) ? postId : Date.now(); // Fallback to the current timestamp if invalid
+          const validId = !isNaN(postId) ? postId : Date.now();
 
           return {
-            id: validId, // Ensure it's always a number
-            title: post.caption || "Untitled", // Use caption or fallback if missing
-            content: post.caption || "No content available", // Fallback if caption is missing
-            imageUrl: post.imageUrl || "/default-image.jpg", // Ensure the post image URL is used
-            user: post.user, // Directly use the user object
+            id: validId,
+            title: post.caption || "Untitled",
+            content: post.caption || "No content available",
+            imageUrl: post.imageUrl || "/default-image.jpg",
+            user: post.user,
             caption: post.caption,
             createdAt: post.createdAt,
             updatedAt: post.updatedAt,
@@ -87,46 +86,53 @@ const PostView = () => {
   }, []);
 
   return (
-    <Container>
-      <Typography variant="h4" sx={{ my: 4 }}>
+    <Box
+      display="flex"
+      flexDirection="column"
+      alignItems="center"
+      justifyContent="center"
+      sx={{ minHeight: "100vh", padding: "2rem" }}
+    >
+      <Typography variant="h4" sx={{ mb: 4, textAlign: "center" }}>
         Nedávne príspevky
       </Typography>
 
       {loading && (
-        <Box display="flex" justifyContent="center">
+        <Box display="flex" justifyContent="center" sx={{ marginBottom: "2rem" }}>
           <CircularProgress />
         </Box>
       )}
 
-      {error && <Alert severity="error">{error}</Alert>}
+      {error && <Alert severity="error" sx={{ mb: 4 }}>{error}</Alert>}
 
       <Box
         display="flex"
         flexWrap="wrap"
-        justifyContent="space-between"
+        justifyContent="center" // Center the posts horizontally
         gap={4}
         sx={{ marginBottom: 4 }}
       >
         {posts.map((post, index) => (
           <Box
-            key={`${post.id}-${index}`} // Ensure each Box has a unique key
+            key={`${post.id}-${index}`}
             sx={{
-              width: { xs: "100%", sm: "48%", md: "30%" }, // Adjust size based on screen size
-              height: "auto", // Ensure consistent height
+              width: { xs: "100%", sm: "48%", md: "30%" },
+              height: "auto",
+              display: "flex", // Ensure that the Box is a flex container to center the Card
+              justifyContent: "center", // Center each post horizontally
             }}
           >
-            <Card sx={{ height: "100%" }}>
+            <Card sx={{ height: "100%", width: "100%" }}>
               <CardMedia
                 component="img"
                 height="200"
-                image={post.imageUrl} // Use the correct image URL for the post
+                image={post.imageUrl}
                 alt={post.title}
-                sx={{ objectFit: "cover" }} // Ensure the image scales properly
+                sx={{ objectFit: "cover" }}
               />
               <CardContent sx={{ display: "flex", flexDirection: "column", height: "100%" }}>
-                {/* Display the user's name inside the CardContent */}
                 <Typography variant="body1" sx={{ fontWeight: "bold" }}>
-                  {post.user.name || "Anonymous User"} {/* Fallback to "Anonymous User" if name is null */}
+                  {post.user.name || "Anonymous User"}
                 </Typography>
                 <Typography variant="h6" sx={{ flexGrow: 1 }}>
                   {post.title}
@@ -139,7 +145,7 @@ const PostView = () => {
           </Box>
         ))}
       </Box>
-    </Container>
+    </Box>
   );
 };
 
